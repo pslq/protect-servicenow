@@ -21,6 +21,10 @@ With this information, it will connect to the target Servicenow instance and tab
 - Collect all open records
 - If an event short_description is not find in the list of open records, add the record
 
+## Caveats
+
+If you get an warning "Generating data for a large number of columns (>20) - consider limiting fields" try to tweak how many fields are being fetch by the Servicenow API
+
 # Parameters
 
 All parameters are relevant only to the *main.py* script, and are collected as environment variables.
