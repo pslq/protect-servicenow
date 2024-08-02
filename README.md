@@ -1,29 +1,32 @@
 # Idea
 
-This is a snip code to demonstrate how to navigate IBM Storage Protect Operations Center APIs.
-Main goal is to capture alerts which clients are at risk, so an incident could be raised in Servicenow.
+This is a snip code to demonstrate how to navigate IBM Storage Protect Operations Center APIs.  
+Main goal is to capture alerts which clients are at risk, so an incident could be raised in Servicenow.  
 
 # DISCLAIMER
 
-This is a DEMO/[Snip](https://en.wikipedia.org/wiki/Snippet_\(programming\)) to demonstrate a simple way to do it.
-No Support at any type should be expected to be associated to it.
-Use at your own risk and criteria
+This is a DEMO/[Snip](https://en.wikipedia.org/wiki/Snippet_\(programming\)) to demonstrate a simple way to do it.  
+No Support at any type should be expected to be associated to it.  
+Use at your own risk and criteria.  
 
 # Usage
 
-If used as script, by calling *main.py*, it will connect to the Operations Center instance and capture:
+If used as script, by calling *main.py*, it will connect to the Operations Center instance and capture:  
 
 - A list of all clients at risk
 - A list of all open events at the Operations Center
 
-With this information, it will connect to the target Servicenow instance and table to :
+With this information, it will connect to the target Servicenow instance and table to :  
 
 - Collect all open records
 - If an event short_description is not find in the list of open records, add the record
 
+If an collection interval is defined, then it will run this main function at the designated time interval.  
+
 ## Caveats
 
-If you get an warning "Generating data for a large number of columns (>20) - consider limiting fields" try to tweak how many fields are being fetch by the Servicenow API
+If you get an warning "Generating data for a large number of columns (>20) - consider limiting fields".  
+  Try to tweak how many fields are being fetch by the Servicenow API
 
 # Parameters
 
@@ -42,6 +45,7 @@ All parameters are relevant only to the *main.py* script, and are collected as e
 | SP_USER | Storage Protect OPC Center user |
 | SP_PW | Storage Protect OPC Center password |
 | SP_VERIFY_TLS | Verify if Storage Protect OPC tls certificate is signed or not |
+| INTERVAL | Collection interval |
 
 
 ## Example
@@ -58,4 +62,5 @@ export SP_API_BASE="/oc/api"
 export SP_USER='root'
 export SP_PW='aaaaaaaaaaaaaaaaaaaa'
 export SP_VERIFY_TLS='False'
+export INTERVAL=600
 '''

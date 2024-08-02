@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-import utils,sys,os, copy
+import utils,sys,os, copy, asyncio
 
 def main() :
   try :
@@ -50,5 +50,22 @@ def main() :
 
   return(os.EX_OK)
 
+async def async_main(interval:int) :
+  while True :
+    main()
+    await asyncio.sleep(interval)
+
 if __name__ == "__main__" :
-  sys.exit(main())
+  loop_interval = int(os.getenv('INTERVAL', '0'))
+  if loop_interval == 0 :
+    sys.exit(main())
+  else :
+    loop = asyncio.get_event_loop()
+    try:
+      asyncio.ensure_future(async_main(loop_interval))
+      loop.run_forever()
+    except KeyboardInterrupt:
+      pass
+    finally:
+      loop.close()
+      sys.exit(os.EX_OK)
